@@ -1,0 +1,7 @@
+{
+  "name": "guardrails",
+  "version": "0.1.0",
+  "description": "Machine-enforced PreToolUse guardrails for Claude Code: config-driven Bash-command rules + a git-commit secret scanner, with commands to view and add rules. Turn your standing rules into automatic blocks — they hold even under bypass-permissions mode.",
+  "author": { "name": "Akshay Palimkar", "url": "https://github.com/palimkarakshay" },
+  "keywords": ["guardrails", "hooks", "pretooluse", "safety", "security", "claude-code"]
+}

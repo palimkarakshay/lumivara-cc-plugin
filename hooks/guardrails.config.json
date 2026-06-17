@@ -1,0 +1,29 @@
+{
+  "_comment": "Edit these EXAMPLE rules for your own project. Each rule denies a Bash command whose lowercased text matches `pattern` (Python regex). Keep patterns NARROW — false positives erode trust. Append `# GUARDRAIL_OK` to a command to override. Run /add-guardrail to add a rule from plain English.",
+  "rules": [
+    {
+      "name": "expensive-llm-model",
+      "pattern": "\\bgemini\\b.*(2\\.5-pro|gemini-pro|imagen|image-?gen|web-?grounding)",
+      "message": "Use the cheap/flash tier for this provider, not the expensive SKU (cost guardrail). EXAMPLE — adapt to your own provider + paid models."
+    },
+    {
+      "name": "protect-critical-instance",
+      "pattern": "\\bmy-prod-box\\b.*(instances?\\s+stop|instance-action|\\bstop\\b|terminate|poweroff|shutdown\\s+-h)",
+      "message": "Refusing to STOP the critical instance. EXAMPLE — replace 'my-prod-box' with your instance name; a stop may be destructive or non-recoverable."
+    },
+    {
+      "name": "no-public-bind",
+      "pattern": "(--host[ =]+0\\.0\\.0\\.0|--address[ =]+0\\.0\\.0\\.0|\\bbind[ =]+0\\.0\\.0\\.0|0\\.0\\.0\\.0:\\d|host=0\\.0\\.0\\.0)",
+      "message": "Don't bind 0.0.0.0 (no public ingress). Use 127.0.0.1 or a private/VPN address."
+    },
+    {
+      "name": "single-arch-only",
+      "pattern": "(channel:\\s*['\"]?chrome|--platform[ =]+linux/amd64|:i386|qemu-x86)",
+      "message": "This host is single-arch (e.g. arm64): no cross-arch binaries. EXAMPLE — adjust for your architecture, or delete this rule."
+    }
+  ],
+  "secret_scan": {
+    "enabled": true,
+    "pattern": "(sk-[A-Za-z0-9]{20,}|sk-ant-[A-Za-z0-9-]{20,}|AKIA[0-9A-Z]{16}|ghp_[A-Za-z0-9]{36}|xox[baprs]-[A-Za-z0-9-]{10,}|-----BEGIN [A-Z ]*PRIVATE KEY-----|AIza[0-9A-Za-z_-]{30,})"
+  }
+}

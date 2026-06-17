@@ -1,0 +1,12 @@
+{
+  "name": "lumivara",
+  "owner": { "name": "Akshay Palimkar", "url": "https://github.com/palimkarakshay" },
+  "metadata": { "description": "Lumivara Claude Code plugins" },
+  "plugins": [
+    {
+      "name": "guardrails",
+      "source": "./",
+      "description": "Machine-enforced, config-driven PreToolUse guardrails for Claude Code"
+    }
+  ]
+}
